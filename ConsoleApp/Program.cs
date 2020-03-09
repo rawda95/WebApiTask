@@ -28,15 +28,37 @@ namespace ConsoleApp
         }
 
 
-        static  void Main(string[] args)
+        static void Main(string[] args)
         {
             Console.WriteLine("Fibonacci :");
-            Console.WriteLine("Please enter the number to calculate the Fibonacci :");
-            int n = int.Parse(Console.ReadLine());
-            string FibonacciResult =  GetFibonacciApi(n);
-            Console.WriteLine(@$"Fibonacci result ={FibonacciResult} ");
-            Console.ReadKey();
-          
+            bool endApp = false;
+            while (!endApp)
+            {
+                Console.WriteLine("Please enter the number to calculate the Fibonacci :");
+
+                string Number = Console.ReadLine();
+                int n = 0;
+                while (!int.TryParse(Number, out n))
+                {
+                    Console.Write("This is not valid input. Please enter an integer value: ");
+                    Number = Console.ReadLine();
+
+                }
+
+                string FibonacciResult = GetFibonacciApi(n);
+                Console.WriteLine(@$"Fibonacci result ={FibonacciResult} ");
+                
+
+                Console.Write("Press 'n' and Enter to close the app, or press any other key and Enter to continue: ");
+
+                if (Console.ReadLine() == "n") endApp = true;
+                Console.WriteLine("\n");
+            }
+            return;
+
+
+
+
 
         }
 
@@ -44,4 +66,4 @@ namespace ConsoleApp
 
 
     }
-    }
+}
